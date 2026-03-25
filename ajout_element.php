@@ -11,10 +11,11 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 $titre = $_POST['titre'];
 $numero = $_POST['numero'];
 $collection = $_POST['collection'];
+$possede = $_POST['possede'];
 
-$sql = "INSERT INTO elements_collection (titre_element, numero, id_collection) VALUES (?, ?, ?)";
+$sql = "INSERT INTO elements_collection (titre_element, numero, id_collection, possede) VALUES (?, ?, ?, ?)";
 $stmt = $pdo->prepare($sql);
-$stmt->execute([$titre, $numero, $collection]);
+$stmt->execute([$titre, $numero, $collection, $possede]);
 
 echo "Élément ajouté";
 }
@@ -28,6 +29,13 @@ $collections = $pdo->query("SELECT * FROM collections");
     
     <p>Titre : <input type="text" name="titre"/><p>
     <p>Numéro : <input type="number" name="numero"/><p>
+    <p>Possédé :
+    <select name="possede">
+        <option value="1">Oui</option>
+        <option value="0">Non</option>
+    </select>
+    </p>
+
     <p>Collection :<p>
     <select name="collection">
         <?php foreach($collections as $c): ?>
