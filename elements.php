@@ -6,6 +6,7 @@ require 'connexion.php';
 
 
 $sql = "SELECT 
+        e.id_element,
         e.titre_element,
         e.numero,
         c.nom_collection,
@@ -34,6 +35,10 @@ $resultat = $pdo->query($sql);
     <td><?= $row['numero'] ?></td>
     <td><?= htmlspecialchars($row['nom_collection']) ?></td>
     <td><?= $row['possede'] ? "Oui" : "Non" ?></td>
+    <td>
+    <a href="modifier_element.php?id=<?= $row['id_element'] ?>">Modifier</a>
+    <a href="supprimer_element.php?id=<?= $row['id_element'] ?>">Supprimer</a>
+</td>
 </tr>
 <?php endforeach; ?>
 

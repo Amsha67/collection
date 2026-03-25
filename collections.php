@@ -3,8 +3,8 @@
 <?php
 require 'connexion.php';
 
-
-$sql = "SELECT c.nom_collection, t.nom_type
+//sélectionner les collections avec leur type
+$sql = "SELECT c.id_collection, c.nom_collection, t.nom_type
        FROM collections c
        JOIN types_collection t ON c.id_type = t.id_type";
 
@@ -23,6 +23,10 @@ $resultat = $pdo->query($sql);
 <tr>
    <td><?= htmlspecialchars($row['nom_collection']) ?></td>
    <td><?= htmlspecialchars($row['nom_type']) ?></td>
+   <td>
+    <a href="modifier_collection.php?id=<?= $row['id_collection'] ?>">Modifier</a>
+    <a href="supprimer_collection.php?id=<?= $row['id_collection'] ?>">Supprimer</a>
+</td>
 </tr>
 <?php endforeach; ?>
 

@@ -44,7 +44,7 @@ $resultat = $pdo->query($sql);
 
  <!-- TABLEAU  HTML-->
 
-<h1>Éléments</h1>
+<h1>Gestion des emprunts</h1>
 
 <table border="1">
 <tr>
