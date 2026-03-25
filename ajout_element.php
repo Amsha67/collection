@@ -1,5 +1,10 @@
+
+
+<?php require 'menu.php'; ?> 
+
 <?php
 require 'connexion.php';
+
 
 if($_SERVER["REQUEST_METHOD"] === "POST") {
 
@@ -16,6 +21,8 @@ echo "Élément ajouté";
 
 $collections = $pdo->query("SELECT * FROM collections");
 ?>
+
+
 
 <form method="post">
     

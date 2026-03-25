@@ -1,5 +1,9 @@
+
+<?php require 'menu.php'; ?> 
+
 <?php
 require 'connexion.php';
+
 
 $sql = "SELECT 
         e.titre_element,

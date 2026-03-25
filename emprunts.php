@@ -1,5 +1,8 @@
+<?php require 'menu.php'; ?> 
+
 <?php
 require 'connexion.php';
+
 
 // Récupérer les éléments avec leurs emprunts
 if($_SERVER["REQUEST_METHOD"] === "POST") {

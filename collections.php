@@ -1,5 +1,8 @@
+<?php require 'menu.php'; ?> 
+
 <?php
 require 'connexion.php';
+
 
 $sql = "SELECT c.nom_collection, t.nom_type
        FROM collections c

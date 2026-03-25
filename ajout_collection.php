@@ -1,5 +1,8 @@
+<?php require 'menu.php'; ?>
+
 <?php
 require 'connexion.php';
+
 
 if($_SERVER["REQUEST_METHOD"] === "POST") {
 
