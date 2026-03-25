@@ -67,8 +67,8 @@ $resultat = $pdo->query($sql);
     <td><?= $row['numero'] ?></td>
     <td><?= htmlspecialchars($row['nom_collection']) ?></td>
     <td><?= $row['possede'] ? "Oui" : "Non" ?></td>
-    <td><?= $row['nom_emprunteur'] ?? "Personne" ?></td>
-    <td><?= $row['date_emprunt'] ?? "-" ?></td>
+    <td><?= htmlspecialchars($row['nom_emprunteur'] ?? "Personne") ?></td>
+    <td><?= htmlspecialchars($row['date_emprunt'] ?? "-") ?></td>
     <td>
         <?php if(!$row['nom_emprunteur'] && $row['possede']): ?>
             <p>Disponible<p>

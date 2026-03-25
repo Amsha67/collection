@@ -23,7 +23,7 @@ echo "Élément ajouté";
 $collections = $pdo->query("SELECT * FROM collections");
 ?>
 
-
+<!-- FORMULAIRE HTML -->
 
 <form method="post">
     

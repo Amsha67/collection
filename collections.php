@@ -13,21 +13,22 @@ $resultat = $pdo->query($sql);
 
 <h1>Mes collections</h1>
 
-<table border="1">
-<tr>
-   <th>Collection</th>
-   <th>Type</th>
-</tr>
+   <table border="1">
+      <tr>
+         <th>Collection</th>
+         <th>Type</th>
+      </tr>
 
-<?php foreach($resultat as $row): ?>
-<tr>
-   <td><?= htmlspecialchars($row['nom_collection']) ?></td>
-   <td><?= htmlspecialchars($row['nom_type']) ?></td>
-   <td>
-    <a href="modifier_collection.php?id=<?= $row['id_collection'] ?>">Modifier</a>
-    <a href="supprimer_collection.php?id=<?= $row['id_collection'] ?>">Supprimer</a>
-</td>
-</tr>
-<?php endforeach; ?>
+      <?php foreach($resultat as $row): ?>
+      <tr>
+         <td><?= htmlspecialchars($row['nom_collection']) ?></td>
+         <td><?= htmlspecialchars($row['nom_type']) ?></td>
+         <td>
+            <a href="detail_collection.php?id=<?= $row['id_collection'] ?>">Détail</a>
+            <a href="modifier_collection.php?id=<?= $row['id_collection'] ?>">Modifier</a>
+            <a href="supprimer_collection.php?id=<?= $row['id_collection'] ?>">Supprimer</a>
+         </td>
+      </tr>
+      <?php endforeach; ?>
 
-</table>
+   </table>
