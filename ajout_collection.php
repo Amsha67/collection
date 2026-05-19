@@ -1,5 +1,5 @@
 <?php require 'menu.php'; ?>
-
+<link rel="stylesheet" href="./assets/css/style.css">
 <?php
 require 'connexion.php';
 

@@ -1,3 +1,6 @@
+
+<?php require 'menu.php'; ?>
+<link rel="stylesheet" href="./assets/css/style.css">
 <?php
 require 'connexion.php';
 
@@ -16,7 +19,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 ?>
 
-<?php require 'menu.php'; ?>
+
 
 <h1>Modifier la collection</h1>
 

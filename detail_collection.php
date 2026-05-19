@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="./assets/css/style.css">
+
+<?php require 'menu.php'; ?>
 <?php
 require 'connexion.php';
 
@@ -17,11 +20,10 @@ $stmt->execute([$id]);
 $elements = $stmt->fetchAll();
 ?>
 
-<?php require 'menu.php'; ?>
 
 <h1>Collection : <?= htmlspecialchars($collection['nom_collection']) ?></h1>
 <p>Type : <?= htmlspecialchars($collection['nom_type']) ?></p>
-
+<div style="overflow-x:auto;">
 <table border="3">
 <tr>
     <th>Titre</th>
@@ -38,5 +40,5 @@ $elements = $stmt->fetchAll();
 <?php endforeach; ?>
 
 </table>
-
+</div>
 <a href="collections.php">← Retour aux collections</a>

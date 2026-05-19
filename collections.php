@@ -1,5 +1,5 @@
 <?php require 'menu.php'; ?> 
-
+<link rel="stylesheet" href="./assets/css/style.css">
 <?php
 require 'connexion.php';
 
@@ -12,6 +12,7 @@ $resultat = $pdo->query($sql);
 ?>
 
 <h1>Mes collections</h1>
+   
 
    <table border="1">
       <tr>
@@ -32,3 +33,4 @@ $resultat = $pdo->query($sql);
       <?php endforeach; ?>
 
    </table>
+
