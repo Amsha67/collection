@@ -1,5 +1,5 @@
 <?php
-require 'connexion.php';
+require 'db.php';
 $id_utilisateur = 1; // à remplacer par la session
 $id_element = $_GET['id'];
 

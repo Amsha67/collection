@@ -1,7 +1,7 @@
 <?php require 'menu.php'; ?>
 <link rel="stylesheet" href="./assets/css/style.css">
 <?php
-require 'connexion.php';
+require 'db.php';
 
 
 if($_SERVER["REQUEST_METHOD"] === "POST") {

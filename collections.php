@@ -1,7 +1,7 @@
 <?php require 'menu.php'; ?> 
 <link rel="stylesheet" href="./assets/css/style.css">
 <?php
-require 'connexion.php';
+require 'db.php';
 
 //sélectionner les collections avec leur type
 $sql = "SELECT c.id_collection, c.nom_collection, t.nom_type

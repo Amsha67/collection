@@ -3,7 +3,7 @@
 
 
 <?php
-require 'connexion.php';
+require 'db.php';
 $id_utilisateur = 1; // à remplacer par la session
 
 // Retirer un favori
