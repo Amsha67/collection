@@ -1,15 +1,14 @@
+<?php require 'auth_check.php'; ?>
 <?php require 'menu.php'; ?>
 <link rel="stylesheet" href="./assets/css/style.css">
-
-
 <?php
 require 'db.php';
-$id_utilisateur = 1; // à remplacer par la session
+$id_utilisateur = $_SESSION['user_id'];
 
 // Retirer un favori
-if(isset($_GET['retirer'])) {
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['retirer'])) {
     $stmt = $pdo->prepare("DELETE FROM favoris WHERE id_utilisateur = ? AND id_element = ?");
-    $stmt->execute([$id_utilisateur, $_GET['retirer']]);
+    $stmt->execute([$id_utilisateur, $_POST['retirer']]);
 }
 
 $stmt = $pdo->prepare("
@@ -23,27 +22,27 @@ $stmt = $pdo->prepare("
 $stmt->execute([$id_utilisateur]);
 $favoris = $stmt->fetchAll();
 ?>
-
-
 <h1>Mes Favoris</h1>
-
 <table border="1">
-<tr>
-    <th>Titre</th>
-    <th>Numéro</th>
-    <th>Collection</th>
-    <th>Type</th>
-    <th>Action</th>
-</tr>
-<?php foreach($favoris as $f): ?>
-<tr>
-    <td><?= htmlspecialchars($f['titre_element']) ?></td>
-    <td><?= htmlspecialchars($f['numero']) ?></td>
-    <td><?= htmlspecialchars($f['nom_collection']) ?></td>
-    <td><?= htmlspecialchars($f['nom_type']) ?></td>
-    <td>
-        <a href="favoris.php?retirer=<?= $f['id_element'] ?>">Retirer des favoris</a>
-    </td>
-</tr>
-<?php endforeach; ?>
+    <tr>
+        <th>Titre</th>
+        <th>Numéro</th>
+        <th>Collection</th>
+        <th>Type</th>
+        <th>Action</th>
+    </tr>
+    <?php foreach ($favoris as $f): ?>
+        <tr>
+            <td><?= htmlspecialchars($f['titre_element']) ?></td>
+            <td><?= htmlspecialchars($f['numero']) ?></td>
+            <td><?= htmlspecialchars($f['nom_collection']) ?></td>
+            <td><?= htmlspecialchars($f['nom_type']) ?></td>
+            <td>
+                <form method="post" action="favoris.php" style="display:inline;">
+                    <input type="hidden" name="retirer" value="<?= $f['id_element'] ?>">
+                    <button type="submit">Retirer des favoris</button>
+                </form>
+            </td>
+        </tr>
+    <?php endforeach; ?>
 </table>

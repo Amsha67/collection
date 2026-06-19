@@ -1,3 +1,4 @@
+<?php require 'auth_check.php'; ?>
 <?php
 session_start();
 require 'db.php';

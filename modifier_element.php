@@ -1,4 +1,3 @@
-
 <?php require 'menu.php'; ?>
 <link rel="stylesheet" href="./assets/css/style.css">
 
@@ -13,7 +12,7 @@ $stmt->execute([$id]);
 $element = $stmt->fetch();
 
 // Si le formulaire est soumis
-if($_SERVER["REQUEST_METHOD"] === "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt = $pdo->prepare("UPDATE elements_collection SET titre_element = ?, numero = ?, possede = ? WHERE id_element = ?");
     $stmt->execute([$_POST['titre_element'], $_POST['numero'], $_POST['possede'], $id]);
     header("Location: elements.php");
@@ -27,7 +26,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 <form method="post">
     <p>Titre : <input type="text" name="titre_element" value="<?= htmlspecialchars($element['titre_element']) ?>"></p>
     <p>Numéro : <input type="number" name="numero" value="<?= $element['numero'] ?>"></p>
-    <p>Possédé : 
+    <p>Possédé :
         <select name="possede">
             <option value="1" <?= $element['possede'] ? 'selected' : '' ?>>Oui</option>
             <option value="0" <?= !$element['possede'] ? 'selected' : '' ?>>Non</option>

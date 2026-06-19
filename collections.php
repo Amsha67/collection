@@ -1,5 +1,6 @@
-<?php require 'menu.php'; ?> 
+<?php require 'menu.php'; ?>
 <link rel="stylesheet" href="./assets/css/style.css">
+<?php require 'auth_check.php'; ?>
 <?php
 require 'db.php';
 
@@ -12,15 +13,15 @@ $resultat = $pdo->query($sql);
 ?>
 
 <h1>Mes collections</h1>
-   
 
-   <table border="1">
-      <tr>
-         <th>Collection</th>
-         <th>Type</th>
-      </tr>
 
-      <?php foreach($resultat as $row): ?>
+<table border="1">
+   <tr>
+      <th>Collection</th>
+      <th>Type</th>
+   </tr>
+
+   <?php foreach ($resultat as $row): ?>
       <tr>
          <td><?= htmlspecialchars($row['nom_collection']) ?></td>
          <td><?= htmlspecialchars($row['nom_type']) ?></td>
@@ -30,7 +31,6 @@ $resultat = $pdo->query($sql);
             <a href="supprimer_collection.php?id=<?= $row['id_collection'] ?>">Supprimer</a>
          </td>
       </tr>
-      <?php endforeach; ?>
+   <?php endforeach; ?>
 
-   </table>
-
+</table>
