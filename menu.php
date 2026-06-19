@@ -10,11 +10,19 @@ if (session_status() === PHP_SESSION_NONE) {
     <a href="ajout_element.php">Ajouter un élément</a> |
     <a href="emprunts.php">Emprunts</a> |
     <a href="favoris.php">Mes favoris</a> |
-    <?php if (isset($_SESSION['user_id'])): ?>
-        Connecté en tant que <strong style="color: white;"><?= htmlspecialchars($_SESSION['nom']) ?></strong> |
+    <div class="idconect">
+        <?php if (isset($_SESSION['user_id'])): ?>
+            Connecté en tant<br> que <strong><?= htmlspecialchars($_SESSION['nom']) ?></strong>
+        </div> |
         <a href="deconnexion.php">Se déconnecter</a>
     <?php else: ?>
         <a href="connexion.php">Se connecter</a> |
         <a href="inscription.php">S'inscrire</a>
     <?php endif; ?>
 </nav>
+
+<style scoped>
+    .idconect {
+        color: white;
+    }
+</style>

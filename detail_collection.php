@@ -7,19 +7,18 @@ if (!isset($_POST['id'])) {
 }
 $id = $_POST['id'];
 
-// Récupérer les infos de la collection, en vérifiant qu'elle appartient à l'utilisateur connecté
-$stmt = $pdo->prepare("SELECT c.nom_collection, t.nom_type 
+$stmt = $pdo->prepare("SELECT c.nom_collection, t.nom_type, u.nom AS proprietaire
     FROM collections c
     JOIN types_collection t ON c.id_type = t.id_type
-    WHERE c.id_collection = ? AND c.id_utilisateur = ?");
-$stmt->execute([$id, $_SESSION['user_id']]);
+    JOIN utilisateurs u ON c.id_utilisateur = u.id_utilisateur
+    WHERE c.id_collection = ?");
+$stmt->execute([$id]);
 $collection = $stmt->fetch();
 
 if (!$collection) {
-    die("Vous n'avez pas accès à cette collection.");
+    die("Collection introuvable.");
 }
 
-// Récupérer les éléments de la collection
 $stmt = $pdo->prepare("SELECT * FROM elements_collection WHERE id_collection = ?");
 $stmt->execute([$id]);
 $elements = $stmt->fetchAll();
@@ -28,6 +27,7 @@ $elements = $stmt->fetchAll();
 <?php require 'menu.php'; ?>
 <h1>Collection : <?= htmlspecialchars($collection['nom_collection']) ?></h1>
 <p>Type : <?= htmlspecialchars($collection['nom_type']) ?></p>
+<p>Propriétaire : <?= htmlspecialchars($collection['proprietaire']) ?></p>
 <div style="overflow-x:auto;">
     <table border="3">
         <tr>
@@ -35,13 +35,13 @@ $elements = $stmt->fetchAll();
             <th>Numéro</th>
             <th>Possédé</th>
         </tr>
-        <?php foreach ($elements as $e): ?>
+                <?php foreach ($elements as $e): ?>
             <tr>
                 <td><?= htmlspecialchars($e['titre_element']) ?></td>
                 <td><?= htmlspecialchars($e['numero']) ?></td>
                 <td><?= $e['possede'] ? "Oui" : "Non" ?></td>
             </tr>
-        <?php endforeach; ?>
+                <?php endforeach; ?>
     </table>
 </div>
 <a href="collections.php">← Retour aux collections</a>

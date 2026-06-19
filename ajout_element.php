@@ -4,18 +4,16 @@
 <?php
 require 'db.php';
 
-// On ne récupère que les collections de l'utilisateur connecté
 $stmt = $pdo->prepare("SELECT * FROM collections WHERE id_utilisateur = ?");
 $stmt->execute([$_SESSION['user_id']]);
 $collections = $stmt->fetchAll();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $titre = $_POST['titre'];
-    $numero = $_POST['numero'];
+    $numero = ($_POST['numero'] === '') ? null : $_POST['numero'];
     $collection_id = $_POST['collection'];
     $possede = $_POST['possede'];
 
-    // Vérification serveur : la collection choisie appartient-elle bien à l'utilisateur ?
     $check = $pdo->prepare("SELECT * FROM collections WHERE id_collection = ? AND id_utilisateur = ?");
     $check->execute([$collection_id, $_SESSION['user_id']]);
     if (!$check->fetch()) {
@@ -30,10 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 ?>
 <!-- FORMULAIRE HTML -->
 <form method="post">
-    <p>Titre : <input type="text" name="titre" />
-    <p>
-    <p>Numéro : <input type="number" name="numero" />
-    <p>
+    <p>Titre : <input type="text" name="titre" required /></p>
+    <p>Numéro : <input type="number" name="numero" /></p>
     <p>Possédé :
         <select name="possede">
             <option value="1">Oui</option>
@@ -41,13 +37,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </select>
     </p>
     <p>Collection :
-    <p>
         <select name="collection">
-            <?php foreach ($collections as $c): ?>
+                <?php foreach ($collections as $c): ?>
                 <option value="<?= $c['id_collection'] ?>">
-                    <?= htmlspecialchars($c['nom_collection']) ?>
+                        <?= htmlspecialchars($c['nom_collection']) ?>
                 </option>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
         </select><br>
         <button type="submit">Ajouter</button>
 </form>
