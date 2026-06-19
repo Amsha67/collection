@@ -5,5 +5,7 @@
     <a href="elements.php">Éléments</a> |
     <a href="ajout_element.php">Ajouter un élément</a> |
     <a href="emprunts.php">Emprunts</a>
-    <a href="favoris.php">Mes favoris</a> |
+    <a href="favoris.php">Mes favoris</a> 
+    <a href="connexion.php">Se connecter</a>
+    <a href="inscription.php">S'inscrire</a>|
 </nav>
